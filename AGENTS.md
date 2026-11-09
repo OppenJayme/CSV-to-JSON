@@ -7,7 +7,7 @@ This is a small CSV-to-JSON exercise for USC. Keep the code easy to read and exp
 - Use plain HTML, CSS, and JavaScript. No framework, database, or build step is needed.
 - Let the user choose a CSV, preview the converted JSON, and download it.
 - Process files in the browser. Do not send student records to a server or keep them in local storage.
-- Show Kyer Ivan Jayme's full name and class schedule in `index.html`. The schedule is still missing; do not invent it.
+- Show Kyer Ivan Jayme's full name and class schedule in `index.html`. The confirmed schedule is TTH, 6:00–8:30 PM.
 - Follow the data map in `README.md`. Keep JSON field names and types exactly as assigned.
 - The instructor's CSV has not been checked yet. Confirm the course codes and full program names before submission.
 

@@ -60,7 +60,7 @@ student_id,first_name,last_name,course,year_level,email,tuition_balance
 
 ## Before submitting
 
-- Replace `Schedule: To be added` in `index.html` with the actual class days and time. The displayed name is Kyer Ivan Jayme.
+- Confirm the displayed details in `index.html`: Kyer Ivan Jayme; TTH, 6:00–8:30 PM.
 - Download `exercise_datamap.csv` from Canvas and check the conversion with that file.
 - Confirm every course code and program name against the instructor's expected output.
 - Test an invalid CSV, select another file after a successful conversion, and check the downloaded JSON.
