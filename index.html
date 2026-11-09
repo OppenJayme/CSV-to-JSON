@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSV to JSON | Data Map Exercise</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="subject">Data Map Exercise</p>
+      <h1>CSV to JSON</h1>
+      <p>Upload a student CSV to convert it using the required data map.</p>
+      <div class="student-info">
+        <span><strong>Name:</strong> Kyer Ivan Jayme</span>
+        <span><strong>Schedule:</strong> TTH, 6:00–8:30 PM</span>
+      </div>
+    </header>
+
+    <section class="panel" aria-labelledby="upload-heading">
+      <h2 id="upload-heading">1. Choose a CSV file</h2>
+      <form id="upload-form">
+        <label for="csv-file">Student records (.csv)</label>
+        <input id="csv-file" type="file" accept=".csv,text/csv" required aria-describedby="file-help">
+        <p id="file-help" class="help">CSV files up to 5 MB.</p>
+        <button id="convert-button" type="submit">Convert to JSON</button>
+      </form>
+      <p id="status" role="status" aria-live="polite">Choose a file to get started.</p>
+    </section>
+
+    <section class="panel" aria-labelledby="output-heading">
+      <div class="output-heading">
+        <h2 id="output-heading">2. JSON output</h2>
+        <button id="download-button" type="button" class="secondary" disabled>Download JSON</button>
+      </div>
+      <pre id="json-output" tabindex="0" aria-label="Converted JSON">Your converted records will appear here.</pre>
+    </section>
+  </main>
+</body>
+</html>

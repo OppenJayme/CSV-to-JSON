@@ -1,0 +1,36 @@
+:root {
+  font-family: Arial, sans-serif;
+  color: #202b3a;
+  background: #f3f5f8;
+  line-height: 1.5;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { max-width: 900px; margin: 48px auto; padding: 0 20px; }
+header { margin-bottom: 28px; }
+h1 { margin: 4px 0 10px; font-size: 2rem; }
+h2 { margin: 0 0 18px; font-size: 1.1rem; }
+p { margin: 10px 0; }
+.subject { color: #465a75; font-size: 0.9rem; }
+.student-info { display: flex; flex-wrap: wrap; gap: 8px 32px; margin-top: 20px; }
+.panel { padding: 24px; margin-bottom: 20px; background: #fff; border: 1px solid #dce2e9; border-radius: 8px; }
+label { display: block; margin-bottom: 8px; }
+input[type="file"] { display: block; width: 100%; font: inherit; }
+.help { color: #556174; font-size: 0.875rem; margin-bottom: 18px; }
+button { border: 1px solid #2559a9; border-radius: 4px; padding: 10px 16px; background: #2559a9; color: white; font: inherit; cursor: pointer; }
+button:hover:not(:disabled) { background: #1c478a; }
+button:disabled { opacity: 0.55; cursor: default; }
+button.secondary { background: white; color: #2559a9; }
+button.secondary:hover:not(:disabled) { background: #edf3fc; }
+:focus-visible { outline: 3px solid #b36b00; outline-offset: 3px; }
+#status { margin: 18px 0 0; overflow-wrap: anywhere; }
+#status.error { color: #a11e26; }
+.output-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+.output-heading h2 { margin: 0; }
+pre { min-height: 220px; max-height: 480px; overflow: auto; margin: 0; padding: 18px; border: 1px solid #dce2e9; border-radius: 4px; background: #f8fafc; font: 0.875rem/1.6 Consolas, monospace; tab-size: 2; }
+@media (max-width: 520px) {
+  main { margin: 28px auto; padding: 0 14px; }
+  .panel { padding: 18px; }
+  .student-info, .output-heading { flex-direction: column; align-items: flex-start; }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "csv-to-json-exercise",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  }
+}
