@@ -32,7 +32,7 @@ There are no packages to install. Node is only needed for the tests, not for hos
 | `email` | `emailAddress` | String | Convert to lowercase |
 | `tuition_balance` | `outstandingBalance` | Number | Round and write with two decimal places |
 
-Whitespace around values is trimmed. Name capitalization changes only the first character; the remaining characters are preserved. Balances use JavaScript's `toFixed(2)` rounding. The output writes values such as `42.50` as JSON numbers, without quotes. A JSON viewer may display that value as `42.5` after parsing it.
+Whitespace around values is trimmed. Name capitalization changes only the first character; the remaining characters are preserved. Balances are rounded from the decimal text to the nearest cent, with exact halfway values rounded away from zero: `1.005` becomes `1.01`, and `-1.005` becomes `-1.01`. Values that cannot be represented safely in cents are rejected. The output writes values such as `42.50` as JSON numbers, without quotes. A JSON viewer may display that value as `42.5` after parsing it.
 
 All seven columns and their values are required. Columns can appear in a different order; extra columns are ignored. Blank lines are ignored. Invalid records stop the conversion and show an error rather than producing a partial download. Error record numbers count data records, excluding the header and blank lines.
 
@@ -50,7 +50,7 @@ These are the initial mappings in `converter.js`. They need to be checked agains
 
 Codes are matched without case sensitivity. An unknown code shows an error. Add the correct full name to the map if the class file includes other programs.
 
-For a quick local check, save the following **made-up test data** as `demo.csv`. This is not the instructor's file.
+For a quick local check, use [examples/demo.csv](examples/demo.csv), which can also be downloaded from the page. It contains **made-up test data**, not the instructor's file. A minimal CSV looks like this:
 
 ```csv
 student_id,first_name,last_name,course,year_level,email,tuition_balance
@@ -79,7 +79,7 @@ student_id,first_name,last_name,course,year_level,email,tuition_balance
    | Username | Your DCISM username, usually `s` followed by your USC ID |
    | Password | Your DCISM account password |
 
-4. Open the folder named after your subdomain. Upload `index.html`, `styles.css`, `app.js`, and `converter.js` directly into it.
+4. Open the folder named after your subdomain. Upload `index.html`, `styles.css`, `app.js`, and `converter.js` directly into it. Include the `examples` folder so the sample download works.
 5. Visit your subdomain and test the upload and download there.
 
 The written assignment uses `lastname` + first two letters of the first name + `dme`. For Kyer Ivan Jayme this gives `jaymekydme.dcism.org`. The assignment's John Doe example uses a different suffix, so confirm the naming if the instructor clarifies it.
@@ -93,4 +93,6 @@ References: [DCISM setup](https://tutorial.dcism.org/), [subdomains](https://tut
 - `converter.js`: CSV parser, data map, and JSON formatting.
 - `app.js`: file selection, preview, errors, and download.
 - `tests/converter.test.js`: converter checks.
+- `tests/app.test.js`: file selection, conversion, and download handler checks using a small DOM stub. These do not replace a visual browser check.
+- `examples/demo.csv`: made-up records for trying the application.
 - `AGENTS.md`: instructions for later changes and Codex review.

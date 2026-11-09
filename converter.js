@@ -70,11 +70,19 @@ function integer(value, field, row) {
 }
 
 function balance(value, row) {
-  const number = Number(value);
-  if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(value) || !Number.isFinite(number) || Math.abs(number) >= 1e21) {
+  if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(value)) {
     throw new Error(`Record ${row}: tuition_balance must be a decimal number without currency symbols or separators.`);
   }
-  return Number(number.toFixed(2));
+  // Round the decimal text first so values such as 1.005 become 1.01.
+  const [whole, fraction = ''] = value.replace(/^[+-]/, '').split('.');
+  let cents = BigInt(whole || '0') * 100n + BigInt(fraction.padEnd(2, '0').slice(0, 2));
+  if (fraction[2] >= '5') cents++;
+  const sign = value.startsWith('-') ? -1 : 1;
+  const rounded = sign * Number(cents) / 100;
+  if (cents > BigInt(Number.MAX_SAFE_INTEGER) || BigInt(Math.round(Math.abs(rounded) * 100)) !== cents) {
+    throw new Error(`Record ${row}: tuition_balance is too large to represent accurately.`);
+  }
+  return rounded;
 }
 
 function capitalize(value) {
@@ -98,7 +106,7 @@ export function convertCSV(text) {
       if (source[field] === '') throw new Error(`Record ${record}: ${field} is empty.`);
     }
     const program = programs.get(source.course.toUpperCase());
-    if (!program) throw new Error(`Record ${record}: unknown course code "${source.course}". Add its full program name to the course map.`);
+    if (!program) throw new Error(`Record ${record}: unknown course code "${source.course}". Check the course column and supported program codes.`);
 
     return {
       studentId: integer(source.student_id, 'student_id', record),

@@ -26,6 +26,13 @@
         <label for="csv-file">Student records (.csv)</label>
         <input id="csv-file" type="file" accept=".csv,text/csv" required aria-describedby="file-help">
         <p id="file-help" class="help">Files stay in your browser. Maximum file size: 5 MB.</p>
+        <details>
+          <summary>CSV format and supported programs</summary>
+          <p>Required columns:</p>
+          <p class="columns">student_id, first_name, last_name, course, year_level, email, tuition_balance</p>
+          <p>Programs: BSIT / IT, BSCS / CS, and BSIS / IS.</p>
+          <p><a href="examples/demo.csv" download>Download a sample CSV</a> with made-up records.</p>
+        </details>
         <button id="convert-button" type="submit">Convert to JSON</button>
       </form>
       <p id="status" role="status" aria-live="polite">Choose a file to get started.</p>

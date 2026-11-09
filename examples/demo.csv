@@ -1,0 +1,4 @@
+student_id,first_name,last_name,course,year_level,email,tuition_balance
+1001,juan,reyes,BSIT,3,JUAN@EXAMPLE.COM,1250.5
+1002,maria,santos,BSCS,2,MARIA@EXAMPLE.COM,0
+1003,ana,lim,BSIS,1,ANA@EXAMPLE.COM,100.075

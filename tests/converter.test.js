@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import { convertCSV, formatJSON, parseCSV } from '../converter.js';
 
 const header = 'student_id,first_name,last_name,course,year_level,email,tuition_balance';
@@ -81,4 +82,25 @@ test('rejects unknown courses, invalid balances, and missing values', () => {
 
 test('reports the failing record without returning a partial conversion', () => {
   assert.throws(() => convertCSV(`${header}\n${record}\n${record.replace('BSIT', 'UNKNOWN')}`), /Record 2: unknown course/);
+});
+
+test('rounds decimal ties from the CSV text instead of binary floating point', () => {
+  for (const [input, expected] of [
+    ['1.005', 1.01], ['2.675', 2.68], ['100.075', 100.08],
+    ['-1.005', -1.01], ['9.999', 10], ['.005', 0.01],
+    ['12.0049', 12], ['+00012.345', 12.35]
+  ]) {
+    const students = convertCSV(`${header}\n${record.replace('1234.567', input)}`);
+    assert.equal(students[0].outstandingBalance, expected, input);
+    assert.equal(JSON.parse(formatJSON(students))[0].outstandingBalance, expected);
+  }
+  assert.throws(() => convertCSV(`${header}\n${record.replace('1234.567', '999999999999999999999')}`), /too large/);
+});
+
+test('converts the downloadable demo file to three valid student records', async () => {
+  const csv = await readFile(new URL('../examples/demo.csv', import.meta.url), 'utf8');
+  const students = convertCSV(csv);
+  assert.equal(students.length, 3);
+  assert.deepEqual(students.map(student => student.outstandingBalance), [1250.5, 0, 100.08]);
+  assert.deepEqual(JSON.parse(formatJSON(students)), students);
 });
