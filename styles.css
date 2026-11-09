@@ -18,10 +18,6 @@ p { margin: 10px 0; }
 label { display: block; margin-bottom: 8px; }
 input[type="file"] { display: block; width: 100%; font: inherit; }
 .help { color: #556174; font-size: 0.875rem; margin-bottom: 18px; }
-details { margin-bottom: 18px; font-size: 0.875rem; }
-summary { cursor: pointer; color: #2559a9; }
-.columns { overflow-wrap: anywhere; font-family: Consolas, monospace; }
-a { color: #2559a9; }
 button { border: 1px solid #2559a9; border-radius: 4px; padding: 10px 16px; background: #2559a9; color: white; font: inherit; cursor: pointer; }
 button:hover:not(:disabled) { background: #1c478a; }
 button:disabled { opacity: 0.55; cursor: default; }

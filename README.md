@@ -50,7 +50,7 @@ These are the initial mappings in `converter.js`. They need to be checked agains
 
 Codes are matched without case sensitivity. An unknown code shows an error. Add the correct full name to the map if the class file includes other programs.
 
-For a quick local check, use [examples/demo.csv](examples/demo.csv), which can also be downloaded from the page. It contains **made-up test data**, not the instructor's file. A minimal CSV looks like this:
+For a local check, use [examples/demo.csv](examples/demo.csv). It contains made-up test data and is only needed for testing. A minimal CSV looks like this:
 
 ```csv
 student_id,first_name,last_name,course,year_level,email,tuition_balance
@@ -79,7 +79,7 @@ student_id,first_name,last_name,course,year_level,email,tuition_balance
    | Username | Your DCISM username, usually `s` followed by your USC ID |
    | Password | Your DCISM account password |
 
-4. Open the folder named after your subdomain. Upload `index.html`, `styles.css`, `app.js`, and `converter.js` directly into it. Include the `examples` folder so the sample download works.
+4. Open the folder named after your subdomain. Upload only `index.html`, `styles.css`, `app.js`, and `converter.js` directly into it. No other repository files are needed on the server.
 5. Visit your subdomain and test the upload and download there.
 
 The written assignment uses `lastname` + first two letters of the first name + `dme`. For Kyer Ivan Jayme this gives `jaymekydme.dcism.org`. The assignment's John Doe example uses a different suffix, so confirm the naming if the instructor clarifies it.

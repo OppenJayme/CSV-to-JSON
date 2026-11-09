@@ -42,7 +42,6 @@ form.addEventListener('submit', async event => {
   setStatus('Reading and converting the CSV…');
   try {
     const text = await file.text();
-    // Ignore results if the user chose a different file while this one was reading.
     if (currentSelection !== selection) return;
     const students = convertCSV(text);
     json = formatJSON(students);

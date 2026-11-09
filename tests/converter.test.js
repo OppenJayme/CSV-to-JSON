@@ -97,7 +97,7 @@ test('rounds decimal ties from the CSV text instead of binary floating point', (
   assert.throws(() => convertCSV(`${header}\n${record.replace('1234.567', '999999999999999999999')}`), /too large/);
 });
 
-test('converts the downloadable demo file to three valid student records', async () => {
+test('converts the demo fixture to three valid student records', async () => {
   const csv = await readFile(new URL('../examples/demo.csv', import.meta.url), 'utf8');
   const students = convertCSV(csv);
   assert.equal(students.length, 3);

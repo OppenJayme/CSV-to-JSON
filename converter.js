@@ -3,7 +3,6 @@ const requiredHeaders = [
   'year_level', 'email', 'tuition_balance'
 ];
 
-// Confirm these names against the instructor's CSV before submission.
 const programs = new Map([
   ['BSIT', 'Bachelor of Science in Information Technology'],
   ['IT', 'Bachelor of Science in Information Technology'],
@@ -22,7 +21,6 @@ export function parseCSV(text) {
 
   function finishRow() {
     row.push(field);
-    // Ignore empty lines, but keep rows made of delimiters for validation.
     if (row.length > 1 || row[0].trim() !== '') rows.push(row);
     row = [];
     field = '';
@@ -73,7 +71,6 @@ function balance(value, row) {
   if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(value)) {
     throw new Error(`Record ${row}: tuition_balance must be a decimal number without currency symbols or separators.`);
   }
-  // Round the decimal text first so values such as 1.005 become 1.01.
   const [whole, fraction = ''] = value.replace(/^[+-]/, '').split('.');
   let cents = BigInt(whole || '0') * 100n + BigInt(fraction.padEnd(2, '0').slice(0, 2));
   if (fraction[2] >= '5') cents++;
@@ -121,7 +118,6 @@ export function convertCSV(text) {
 }
 
 export function formatJSON(students) {
-  // Keep two decimal digits in the JSON text without turning balances into strings.
   const records = students.map(student => {
     const fields = Object.entries(student).map(([key, value]) => {
       const formatted = key === 'outstandingBalance' ? value.toFixed(2) : JSON.stringify(value);
